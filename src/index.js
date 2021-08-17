@@ -4,9 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import 'bulma/css/bulma.css';
+import Menu from "./components/Menu/Menu";
+import 'animate.css';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Menu/>
+        <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
