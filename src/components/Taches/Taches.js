@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import TachesListe from "./TachesListe";
+import TachesForm from "./TachesForm";
 
 class Taches extends Component{
     //Creation du contructeur de la classe
@@ -25,6 +27,19 @@ class Taches extends Component{
         //Debug de input a chaque entrée
         console.log(event.target.value)
     }
+
+    //Cette fonction prend en paramètre un id et est appelée au click sur le bouton dans le composant TacheListe enfant
+    //Ceci grace a l'appel du composant enfant et le passage de props en tant qu'attibut
+    //<TachesListe  items={this.state.items} onDelete={this.onDeleteTaches} />
+    onDeleteTaches = id =>{
+        let items = this.state.items.slice();
+        //let items = [...this.state.items];
+        const index = items.findIndex(item => item.id === id)
+        items.splice(index, 1)
+        this.setState({items})
+        console.log(items)
+    }
+
 
     //Soumission du formulaire
     handleSubmit(event){
@@ -58,18 +73,11 @@ class Taches extends Component{
     }
 
 
+
     render() {
         return(
             <div className="container">
-                {/*Liste pour afficher les taches*/}
-                <ul>
-                    {/* eslint-disable-next-line array-callback-return */}
-                    {/*Boucle de parcours des elements du tableau items definis dans le state*/}
-                    {this.state.items.map((item) => {
-                        {/*On ajoute une clé = id et on affiche les taches (tableau item + text)*/}
-                       return <li key={item.id}>{item.text}</li>
-                    })}
-                </ul>
+                <TachesListe  items={this.state.items} onDelete={this.onDeleteTaches} />
                 {/*Lors du click sur le bouton Ajouter taches on declenche la fonction handleSubmit*/}
                 {/*ATTENTION A BIEN GARDER LE CONTEXT THIS cf: ligne: 15*/}
                 <form onSubmit={this.handleSubmit}>
