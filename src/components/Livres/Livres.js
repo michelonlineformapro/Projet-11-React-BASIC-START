@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import './Livres.css';
-import AjouterLivre from './Livres.css'
-import App from "../../App";
-
 
 
 function Livres(){
@@ -33,7 +29,6 @@ function ApprendreMap(){
     return (
         <div>Test de map {mapTableau}</div>
     )
-
 }
 
 function BoucleMap(){
@@ -94,9 +89,9 @@ function CreerProps(props){
     )
 }
 
-function Evenement(prenom){
+function Evenement(){
     return(
-        <button onClick={() => handleClick(prenom)} className="button is-success">CLIQUER MOI</button>
+        <button onClick={handleClick} className="button is-success">CLIQUER MOI</button>
     )
 }
 
