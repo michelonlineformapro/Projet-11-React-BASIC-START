@@ -13,25 +13,14 @@ class Taches extends Component{
             text: ''
         }
 
-        //Appeler la fonction avec le context this
-        this.handleSubmit = this.handleSubmit.bind(this)
-
     }
 
-    //Detecter les changements dans un input
-    handleChange(event){
-        //Recuperer la valeur de input avec un setter (mutateur) qui cible <input value=""/>
-        this.setState({
-            text: event.target.value
-        })
-        //Debug de input a chaque entrée
-        console.log(event.target.value)
-    }
 
     //Cette fonction prend en paramètre un id et est appelée au click sur le bouton dans le composant TacheListe enfant
     //Ceci grace a l'appel du composant enfant et le passage de props en tant qu'attibut
     //<TachesListe  items={this.state.items} onDelete={this.onDeleteTaches} />
     onDeleteTaches = id =>{
+        //Copie du tableau
         let items = this.state.items.slice();
         //let items = [...this.state.items];
         const index = items.findIndex(item => item.id === id)
@@ -40,61 +29,30 @@ class Taches extends Component{
         console.log(items)
     }
 
+    //Cette fonction prend un paramètre item objet qui sera transferer a l'enfant lors de son appel
 
-    //Soumission du formulaire
-    handleSubmit(event){
-        //Evite le refresh de la page a la soumission
-        event.preventDefault()
-
-        //Objet nouvelle taches
-        const newTaches = {
-            //Recuperation de du text definis dans le state du constructeur
-            text: this.state.text,
-            //Id = date a l'insatnt T
-            id: Date.now()
-        }
-
-        //Si le champ est vide
-        //Si la longeur du champ imput est === 0 on declenche une alerte
-        if(this.state.text.length === 0){
-            alert("Merci de remplir ce champs")
-            return null
-        }else{
-            //Sinon on modifie le state
-            //on remplis le tableau items avec l'objet nouvelles Taches (newTache)
-            //Concat fusione deux tableau (celui de depart dans le state + la nouvelle Tache)
-            //Ceci equivaut items.push(nexTaches)
-            this.setState(() => ({
-                items: this.state.items.concat(newTaches),
-                    //Vider l'input text = a rien
-                text: ""
-            }))
-        }
+    handleAdd = (item) => {
+        //2 manière de faire un copie du tableau items soit slice soit le spread Operator ...Quelque chose
+        //const items = this.items.slice()
+        const items = [...this.state.items];
+        //On ajoute l'objet item au tableau items
+        items.push(item)
+        //Mettre jour le tableau (state) grace au mutateur setState
+        this.setState({
+            items
+        })
+        //Debug
+        console.log("Noevelle objet " + items);
     }
-
 
 
     render() {
         return(
             <div className="container">
                 <TachesListe  items={this.state.items} onDelete={this.onDeleteTaches} />
-                {/*Lors du click sur le bouton Ajouter taches on declenche la fonction handleSubmit*/}
-                {/*ATTENTION A BIEN GARDER LE CONTEXT THIS cf: ligne: 15*/}
-                <form onSubmit={this.handleSubmit}>
-                    <div className="field">
-                        <label className="label">Liste des taches</label>
-                        {/*Dans input la valeur est egale a text (initialisé dans le state)*/}
-                        {/*On detecte un changement d'etat grace a on change + appel de la fonction handleChange*/}
-                        <input
-                            type="text"
-                            placeholder="Entrer votre tache"
-                            className="input"
-                            onChange={this.handleChange.bind(this)}
-                            value={this.state.text}
-                            />
-                        <button type="submit" className="mt-3 button is-success">Ajouter la taches</button>
-                    </div>
-                </form>
+                {/*Le composant TachesForm prend une props qui appel handleAdd*/}
+                {/*onTachesAdd est appelé dans le composant enfant qui appel la fonction handleSubmit*/}
+                <TachesForm  onTachesAdd={this.handleAdd}/>
             </div>
         )
     }

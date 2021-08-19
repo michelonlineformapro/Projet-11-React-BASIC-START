@@ -12,7 +12,7 @@ const TachesListe = ({items, onDelete}) =>(
                     {/*Boucle de parcours des elements du tableau items definis dans le state*/}
                     {items.map((item) => {
                         {/*On ajoute une clé = id et on affiche les taches (tableau item + text)*/}
-                        return <li key={item.id}>{item.text}
+                        return <li key={item.id}>{item.taches}
                             {/* onDelete est appeler en paramètre de la constante et provient du composant parent*/}
                             {/* <TachesListe  items={this.state.items} onDelete={this.onDeleteTaches} /> */}
                             {/* ce dernier appel la fonction onDeleteTaches qui effectue le splice et donc retire un element du tableau items*/}
@@ -23,5 +23,7 @@ const TachesListe = ({items, onDelete}) =>(
             </div>
 
 )
+
+
 
 export default TachesListe;
