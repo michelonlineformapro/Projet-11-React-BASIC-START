@@ -1,1 +1,14 @@
 .Livres {}
+
+#card-content{
+    height: 100%;
+    transition: 0.5s;
+}
+
+
+#card-content:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.5);
+    color: orange;
+    transform: scale(1.05);
+}

@@ -5,6 +5,7 @@ import './Menu.css';
 import Accueil from "../Accueil/Accueil";
 import Livres from "../Livres/Livres";
 import Taches from "../Taches/Taches";
+import Pizzas from "../Pizzas/Pizzas";
 
 
 function Menu(){
@@ -22,6 +23,9 @@ function Menu(){
                         <span className="navbar-item">
                             <Link to="/taches">LISTES TACHES</Link>
                         </span>
+                        <span className="navbar-item">
+                            <Link to="/pizzas">PIZZAS</Link>
+                        </span>
                     </div>
                 </nav>
 
@@ -34,6 +38,9 @@ function Menu(){
                     </Route>
                     <Route path={"/taches"}>
                         <Taches/>
+                    </Route>
+                    <Route path={"/pizzas"}>
+                        <Pizzas/>
                     </Route>
                 </Switch>
             </div>
