@@ -48,7 +48,7 @@ class Taches extends Component{
 
     render() {
         return(
-            <div className="container">
+            <div className="container has-text-centered animate__animated animate__slideInRight">
                 <TachesListe  items={this.state.items} onDelete={this.onDeleteTaches} />
                 {/*Le composant TachesForm prend une props qui appel handleAdd*/}
                 {/*onTachesAdd est appelé dans le composant enfant qui appel la fonction handleSubmit*/}
