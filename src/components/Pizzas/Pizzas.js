@@ -81,54 +81,56 @@ class Pizzas extends Component {
 
     resultatPizza = () => {
 
-        const nomIngredient = this.state.pizzas.map(pizza =>
-            pizza.ingredients
-        )
-        const getIngredient = nomIngredient.map(ingredient =>
-            ingredient
-        )
+        const choixIngredient = this.state.pizzas.map(pizza => {
+            return (
+                pizza.ingredients
+            )
+        })
 
-        console.log(getIngredient)
-        /*
-        const resultat = nomIngredient.filter(ingredientPizza => !this.state.choixIngredients.includes(ingredientPizza));
-        console.log(resultat)
-         */
+        console.log(choixIngredient)
+
+        const checkArrays = this.state.pizzas.filter(({pizza}) => pizza !== choixIngredient)
+        console.log(checkArrays)
+        console.log(this.state.pizzas)
     }
 
 
     render() {
         return (
             <div>
-                <div className="mt-3 columns is-multiline">
-                    {this.state.pizzas.map(pizza =>
-                        <div className="column is-2" key={pizza.nom}>
-                            <div className="card">
-                                <div className="card-image">
-                                    <h4 className="title is-4 has-text-centered has-text-info">{pizza.nom}</h4>
-                                    <figure className="image is-square">
-                                        <img src={pizza.image} alt={pizza.nom} title={pizza.nom}/>
-                                    </figure>
-                                </div>
-                                <div className="card-content">
-                                    <div className="content">
-                                        <ul>Ingrédients :
-                                            {pizza.ingredients.map(ingredient =>
-                                                <li key={ingredient.id}>{ingredient}</li>
-                                            )}
-                                        </ul>
+                    <div className="mt-3 columns is-multiline">
+                        {this.state.pizzas.filter(pizza => this.resultatPizza).map(pizza => (
+                                <div key={pizza.id} className="column is-2">
+                                    <div className="card">
+                                        <div className="card-image">
+                                            <h4 className="title is-4 has-text-centered has-text-info">{pizza.nom}</h4>
+                                            <figure className="image is-square">
+                                                <img src={pizza.image} alt={pizza.nom} title={pizza.nom}/>
+                                            </figure>
+                                        </div>
+                                        <div className="card-content">
+                                            <div className="content">
+                                                <ul>Ingrédients :
+                                                    {pizza.ingredients.map(ingredient =>
+                                                        <li key={ingredient.id}>{ingredient.nom}</li>
+                                                    )}
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                            )
+                        )}
+                    </div>
+                )}
+
 
                 <div>
                     <div className="title is-4 has-text-danger">LISTE DES INGREDIENTS</div>
                     <div>
-                        {this.state.ingredients.map(ingredient =>
-                            <button onClick={() => this.ajouterIngredient(ingredient.nom)}
-                                    className="button is-success m-3">{ingredient.nom}</button>
+                        {this.state.ingredients.map(ingredientAdd =>
+                            <button key={ingredientAdd.id} onClick={() => this.ajouterIngredient(ingredientAdd.nom)}
+                                    className="button is-success m-3">{ingredientAdd.nom}</button>
                         )}
                     </div>
                 </div>

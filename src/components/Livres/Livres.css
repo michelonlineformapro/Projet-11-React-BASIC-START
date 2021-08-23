@@ -12,3 +12,8 @@
     color: orange;
     transform: scale(1.05);
 }
+
+/*Cacher le formulaire ajout de livre*/
+#form-add-livre{
+    display: none;
+}

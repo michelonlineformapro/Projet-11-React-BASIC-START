@@ -1,13 +1,14 @@
 import React,{Component} from 'react';
 import axios from "axios";
 import "./Livres.css"
-
+import $ from 'jquery';
+import AjouterLivres from "./AjouterLivres";
 
 class LivresListe extends Component{
 
     //Etat locale des données
     state = {
-        //Tableau vide des libres
+        //Tableau vide des livres
         livres: [],
         livreID: ""
     }
@@ -58,6 +59,11 @@ class LivresListe extends Component{
     //Cycle de vie => apres render() le composant est monté on appel la fonction afficher Livres
     componentDidMount() {
         this.afficherLivre();
+
+        //Test click dur le bouton ajouter un livre
+        $("#toggle-add-form").click(function (){
+            $("#form-add-livre").toggle("slow");
+        })
     }
 
     render(){
@@ -84,6 +90,12 @@ class LivresListe extends Component{
                     </div>
                 ) : (
                     <div>
+                        <button id="toggle-add-form" className="button is-info">Ajouter un livre</button>
+
+                        <div id="form-add-livre">
+                            <AjouterLivres />
+                        </div>
+
                         <div className="title is-1 has-text-info">LISTE DES LIVRES DEPUIS API REST</div>
                         <div className="columns is-multiline">
                             {/*Boucle dur le tableau de livres + affichage des element 1 à 1*/}
