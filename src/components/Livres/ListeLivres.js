@@ -125,6 +125,7 @@ class LivresListe extends Component{
                                             <div className="content">
                                                 {livre.descriptionLivre}
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

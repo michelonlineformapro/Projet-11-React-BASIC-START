@@ -27,6 +27,28 @@
       "descriptionLivre": "Java SE Jakarta EE Java ME JavaFX Java Card Jakarta EE, est une spécification pour la plate-forme Java d'Oracle, destinée aux applications d'entreprise.",
       "prixLivre": 653.52,
       "imageLivre": "https://images-na.ssl-images-amazon.com/images/I/51vifBnNFzL.jpg"
+    },
+    {
+      "dataLivre": {
+        "nomLivre": "Livre C#",
+        "descriptionLivre": "C# est un langage de programmation orientée objet, commercialisé par Microsoft depuis 2002 et destiné à développer sur la plateforme Microsoft .NET.",
+        "prixLivre": "40.25",
+        "imageLivre": "https://www.cdiscount.com/pdt2/0/4/9/1/700x700/eni9782409020049/rw/livre-c-8-developpez-des-applications-windows.jpg"
+      }
+    },
+    {
+      "nomLivre": "test",
+      "descriptionLivre": "c #",
+      "prixLivre": "123456.25",
+      "imageLivre": "fefefe",
+      "id": 5
+    },
+    {
+      "nomLivre": "Livre C#",
+      "descriptionLivre": "C# est un langage de programmation orientée objet, commercialisé par Microsoft depuis 2002 et destiné à développer sur la plateforme Microsoft .NET.",
+      "prixLivre": "45.25",
+      "imageLivre": "https://www.cdiscount.com/pdt2/0/4/9/1/700x700/eni9782409020049/rw/livre-c-8-developpez-des-applications-windows.jpg",
+      "id": 6
     }
   ]
 }
