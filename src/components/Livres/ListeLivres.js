@@ -55,6 +55,38 @@ class LivresListe extends Component{
 
     }
 
+    //Fonction pour supprimer un livre depuis le bouton supprimer
+    //<button onClick={() =>this.handleDelete(this.state.livreID.id)} className="button is-danger">SUPPRIMER {this.state.livres.nomLivre}</button>
+
+    handleDelete = (id) => {
+        //Recuperation de id grace a js Filter
+        //on recup livreID: "" depuis l'etat locale (state) et filter variable + fonction var.id + paramètre de la fonction (ici id recup dans le JSX)
+        const livreID = this.state.livres.filter(livre => livre.id !== id)
+        //Debug
+        console.log(livreID)
+        //Mise a jour de l'etat locale grace au mutateur (setter) setState
+        this.setState({
+            livreID
+        })
+
+        //Requete HTTP axios methode = delete + concaténation de id (passer en paramètre de la fonction)
+        axios.delete(`http://localhost:3001/livres/${id}`)
+            //Promesse
+            .then(response => {
+                //Debug f12
+                console.log(response.data)
+                //On declenche une alerte pour confirmer la supression ou annuler
+                alert(`Confirmer la supression du livre : ${livreID} ?`);
+                //On refresh la page
+                window.location.reload();
+            })
+            //Sinon on declenche une erreur
+            .catch(err => {
+                console.log("Erreur de supression du livre " + err)
+            })
+
+    }
+
 
     //Cycle de vie => apres render() le composant est monté on appel la fonction afficher Livres
     componentDidMount() {
@@ -70,6 +102,7 @@ class LivresListe extends Component{
         return(
             <div>
                 {/*TERNAIRE = block a afficher au click sur un livre si l'i existe et possède des données*/}
+
                 {this.state.livreID ? (
                     <div className="animate__animated animate__slideInRight">
                         <div className="title is-1 has-text-success has-text-centered">DÉTAILS DU LIVRE {this.state.livreID.nomLivre}</div>
@@ -86,18 +119,20 @@ class LivresListe extends Component{
                         <div>
                             {/*On recharge la page pour le retour car url est la meme : http://localhost:3000/livres*/}
                             <button onClick={() => window.location.reload()}  className={"button is-info"}>RETOUR</button>
+                            {/*Appel de la fonction handleDelete depuis une fonction anonyme + passage de l'id du livre en paramètres*/}
+                            <button onClick={() =>this.handleDelete(this.state.livreID.id)} className="button is-danger">SUPPRIMER {this.state.livres.nomLivre}</button>
                         </div>
                     </div>
                 ) : (
-                    <div>
-                        <button id="toggle-add-form" className="button is-info">Ajouter un livre</button>
+                    <div className="container is-fluid p-3">
+                        <button id="toggle-add-form" className="mt-3 button is-info">Ajouter un livre</button>
 
-                        <div id="form-add-livre">
+                        <div id="form-add-livre" className="mt-3 box">
                             <AjouterLivres />
                         </div>
 
-                        <div className="title is-1 has-text-info">LISTE DES LIVRES DEPUIS API REST</div>
-                        <div className="columns is-multiline">
+                        <div className="mt-3 title is-1 has-text-info box has-background-black-bis">LISTE DES LIVRES DEPUIS API REST</div>
+                        <div className="mt-3 columns is-multiline">
                             {/*Boucle dur le tableau de livres + affichage des element 1 à 1*/}
                             {this.state.livres.map(livre =>
                                 <div onClick={() => this.livreById(livre.id)} id="card-content" className="column" key={livre.id}>
@@ -134,7 +169,6 @@ class LivresListe extends Component{
                     </div>
                 )}
             </div>
-
         )
     }
 }

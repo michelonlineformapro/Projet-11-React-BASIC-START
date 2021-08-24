@@ -11,7 +11,7 @@
       "id": 2,
       "nomLivre": "Livre PHP",
       "descriptionLivre": "PHP: Hypertext Preprocessor, plus connu sous son sigle PHP, est un langage de programmation libre, principalement utilisé pour produire des pages Web dynamiques via un serveur HTTP.",
-      "prixLivre": 458.25,
+      "prixLivre": 45458.25,
       "imageLivre": "https://m.media-amazon.com/images/I/319uThTlOSL.jpg"
     },
     {
@@ -29,25 +29,17 @@
       "imageLivre": "https://images-na.ssl-images-amazon.com/images/I/51vifBnNFzL.jpg"
     },
     {
-      "dataLivre": {
-        "nomLivre": "Livre C#",
-        "descriptionLivre": "C# est un langage de programmation orientée objet, commercialisé par Microsoft depuis 2002 et destiné à développer sur la plateforme Microsoft .NET.",
-        "prixLivre": "40.25",
-        "imageLivre": "https://www.cdiscount.com/pdt2/0/4/9/1/700x700/eni9782409020049/rw/livre-c-8-developpez-des-applications-windows.jpg"
-      }
-    },
-    {
-      "nomLivre": "test",
-      "descriptionLivre": "c #",
-      "prixLivre": "123456.25",
-      "imageLivre": "fefefe",
+      "nomLivre": "Livre jQuery",
+      "descriptionLivre": "jQuery est une bibliothèque JavaScript libre et multiplateforme créée pour faciliter l'écriture de scripts côté client dans le code HTML des pages web. La première version est lancée en janvier 2006 par John Resig",
+      "prixLivre": "45.25",
+      "imageLivre": "https://images-na.ssl-images-amazon.com/images/I/518iI-gevyL.jpg",
       "id": 5
     },
     {
-      "nomLivre": "Livre C#",
-      "descriptionLivre": "C# est un langage de programmation orientée objet, commercialisé par Microsoft depuis 2002 et destiné à développer sur la plateforme Microsoft .NET.",
-      "prixLivre": "45.25",
-      "imageLivre": "https://www.cdiscount.com/pdt2/0/4/9/1/700x700/eni9782409020049/rw/livre-c-8-developpez-des-applications-windows.jpg",
+      "nomLivre": "Livre Unity",
+      "descriptionLivre": "Unity est un moteur de jeu multiplateforme développé par Unity Technologies. Il est l'un des plus répandus dans l'industrie du jeu vidéo, aussi bien pour les grands studios que pour les indépendants du fait de sa rapidité aux prototypages et qu'il permet de sortir les jeux sur tous les supports.",
+      "prixLivre": "35.25",
+      "imageLivre": "https://www.d-booker.fr/399-thickbox/jeux-2d-et-multijoueurs-2e.jpg",
       "id": 6
     }
   ]

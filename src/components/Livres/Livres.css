@@ -1,7 +1,6 @@
 .Livres {}
 
 #card-content{
-    height: 100%;
     transition: 0.5s;
 }
 
@@ -16,4 +15,8 @@
 /*Cacher le formulaire ajout de livre*/
 #form-add-livre{
     display: none;
+}
+
+.card{
+    height: 100%;
 }
