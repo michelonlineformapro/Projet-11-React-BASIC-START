@@ -10,7 +10,8 @@ class LivresListe extends Component{
     state = {
         //Tableau vide des livres
         livres: [],
-        livreID: ""
+        livreID: "",
+        rechercher: ""
     }
 
     //Requète HTTP
@@ -30,7 +31,6 @@ class LivresListe extends Component{
                 console.log("Erreur de lecture du json livres " + err)
             })
     }
-
     livreById = id =>{
         //Recuperartion de l'id
         const livreID = this.state.livres.filter(livre => livre.id !== id)
@@ -54,10 +54,8 @@ class LivresListe extends Component{
             })
 
     }
-
     //Fonction pour supprimer un livre depuis le bouton supprimer
-    //<button onClick={() =>this.handleDelete(this.state.livreID.id)} className="button is-danger">SUPPRIMER {this.state.livres.nomLivre}</button>
-
+    //<button onClick={() =>this.handleDelete(this.state.livreID.id)} className="button is-danger">SUPPRIMER {this.state.livres.nomLivre}</button
     handleDelete = (id) => {
         //Recuperation de id grace a js Filter
         //on recup livreID: "" depuis l'etat locale (state) et filter variable + fonction var.id + paramètre de la fonction (ici id recup dans le JSX)
@@ -87,6 +85,16 @@ class LivresListe extends Component{
 
     }
 
+    //Fonction rechercher par titre
+    handleRechercher = (event) => {
+        //Debug du champ input = value
+        console.log("Valeur du champ de recherche", event.target.value)
+        //Mettre a jour l' etat locle de la propriété rechercher:"" du state
+        this.setState({
+            rechercher: event.target.value
+        })
+    }
+
 
     //Cycle de vie => apres render() le composant est monté on appel la fonction afficher Livres
     componentDidMount() {
@@ -97,6 +105,7 @@ class LivresListe extends Component{
             $("#form-add-livre").toggle("slow");
         })
     }
+
 
     render(){
         return(
@@ -132,9 +141,29 @@ class LivresListe extends Component{
                         </div>
 
                         <div className="mt-3 title is-1 has-text-info box has-background-black-bis">LISTE DES LIVRES DEPUIS API REST</div>
+
+                        {/*BARRE DE RECHERCHE*/}
+                        {/*Appel de la fonction handleRechercher dans onChange qui recupère la valeur du champ input target value grace au setState */}
+
+                        <div className="mt-3 field box">
+                            <label className="label">RECHERCHER</label>
+                            <input
+                                className="input"
+                                placeholder="php"
+                                type="text"
+                                name="rechercher"
+                                onChange={this.handleRechercher.bind(this)}
+                                value={this.rechercher}
+
+                            />
+                        </div>
+
+
                         <div className="mt-3 columns is-multiline">
-                            {/*Boucle dur le tableau de livres + affichage des element 1 à 1*/}
-                            {this.state.livres.map(livre =>
+
+                            {/*Filtre tableau de livre => filtrer par nomLivre qui est inclus dans les lettres de la barre de rechercher  + Boucle dur le tableau de livres + affichage des element 1 à 1*/}
+
+                            {this.state.livres.filter(recherche => recherche.nomLivre.toLowerCase().includes(this.state.rechercher.toLowerCase())).map(livre =>
                                 <div onClick={() => this.livreById(livre.id)} id="card-content" className="column" key={livre.id}>
                                     <div className="card">
                                         <div className="p-3 title is-4 has-text-centered has-text-danger">{livre.nomLivre}</div>
@@ -164,6 +193,7 @@ class LivresListe extends Component{
                                         </div>
                                     </div>
                                 </div>
+
                             )}
                         </div>
                     </div>

@@ -1,29 +1,30 @@
-import React,{Component} from 'react';
-import {JS} from "json-server/lib/cli/utils/is";
+import React, {Component} from 'react';
+import "./Pizzas.css";
 
-class Pizzas extends Component{
+
+class Pizzas extends Component {
 
     state = {
         pizzas: [
             {
                 id: 1,
                 nom: "Reine",
-                ingredient: ["tomate","cerises"],
+                ingredient: ["tomate", "mozzarella", "anchois"],
                 prix: 7.5,
                 image: "https://wordpress.potagercity.fr/wp-content/uploads/2019/06/Pizza-reine-champignons-et-jambon.jpg"
             },
             {
                 id: 2,
                 nom: "Margherita",
-                ingredient: ["anchois","olives"],
+                ingredient: ["olives", "reblochon", "poivre"],
                 prix: 10,
                 image: "https://wordpress.potagercity.fr/wp-content/uploads/2019/06/Pizza-reine-champignons-et-jambon.jpg"
             },
             {
                 id: 3,
                 nom: "test",
-                ingredient: [""],
-                prix: 10,
+                ingredient: ["tomate", "capres", "oeuf", "oseille"],
+                prix: 12.5,
                 image: "https://wordpress.potagercity.fr/wp-content/uploads/2019/06/Pizza-reine-champignons-et-jambon.jpg"
             },
         ],
@@ -47,9 +48,7 @@ class Pizzas extends Component{
             },
         ],
 
-        rechercherPizza:[],
-        currentPizzaList: []
-
+        rechercherPizza: [],
 
     }
 
@@ -62,59 +61,34 @@ class Pizzas extends Component{
             rechercherPizza
         })
         console.log(rechercherPizza)
-
     }
 
-
     render() {
-        const currentPizzaList = [...this.state.pizzas];
-        const getId = currentPizzaList.map(getId =>
-            getId.ingredient
-        )
-        const liste = [1,2];
+        const currentPizzaList = this.state.pizzas;
         console.log(currentPizzaList)
 
         return (
             <div>
 
                 <div className="title is-1 has-text-info">NOS PIZZAS</div>
-                <div className="columns is-multiline">
-
+                <div id="pizzas-content" className="columns is-multiline">
                     <div className="title is-3 has-text-danger">CREER VOTRE PIZZA</div>
                     <div>
                         {this.state.ingredients.map(ingredient =>
-                            <button onClick={() => this.creerPizza(ingredient.nom)} key={ingredient.id} className="button is-info m-3">{ingredient.nom}</button>
+                            <button onClick={() => this.creerPizza(ingredient.nom)} key={ingredient.id}
+                                    className="button is-info m-3">{ingredient.nom}</button>
                         )}
                     </div>
                     <div className="container is-fluid has-text-danger">
-
                         {this.state.rechercherPizza.map(values =>
-                            currentPizzaList.filter(p => p.ingredient.includes(values)) ?(
-                                <div>
-                                    Valeur du bouton : {values}
-                                    {this.state.pizzas.map(pizza =>
-                                    JSON.stringify(values) === JSON.stringify(pizza.ingredient) ? (
-                                        <div>{pizza.nom}</div>
-                                    ) : (
-                                        <div>PAS DE RESULTATS</div>
+                                    currentPizzaList.filter(p => p.ingredient.includes(values)).map(pizza =>
+                                        <div>
+                                            <p>Valeur de element ajouter : {values}</p>
+                                            <p>Nom pizza : {pizza.nom}</p>
+                                            <p>Prix : {pizza.prix} €</p>
+                                        </div>
                                     )
-
-                                    )}
-
-                                </div>
-                            ) : (
-                                <div>PAS DE RESULTAT</div>
-                            )
                         )}
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
             </div>
