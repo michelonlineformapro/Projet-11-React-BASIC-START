@@ -6,6 +6,7 @@ import Accueil from "../Accueil/Accueil";
 import Livres from "../Livres/Livres";
 import Taches from "../Taches/Taches";
 import Pizzas from "../Pizzas/Pizzas";
+import Test from "../Accueil/Test";
 
 
 function Menu(){
@@ -26,6 +27,9 @@ function Menu(){
                         <span className="navbar-item">
                             <Link to="/pizzas">PIZZAS</Link>
                         </span>
+                        <span className="navbar-item">
+                            <Link to="/test">Test de ref</Link>
+                        </span>
                     </div>
                 </nav>
 
@@ -41,6 +45,9 @@ function Menu(){
                     </Route>
                     <Route path={"/pizzas"}>
                         <Pizzas/>
+                    </Route>
+                    <Route path={"/test"}>
+                        <Test/>
                     </Route>
                 </Switch>
             </div>

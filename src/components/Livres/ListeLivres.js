@@ -1,8 +1,10 @@
-import React,{Component} from 'react';
+
 import axios from "axios";
 import "./Livres.css"
 import $ from 'jquery';
 import AjouterLivres from "./AjouterLivres";
+import TestComponent from "./TestComponent";
+import React, {Component} from "react";
 
 class LivresListe extends Component{
 
@@ -110,6 +112,7 @@ class LivresListe extends Component{
     render(){
         return(
             <div>
+
                 {/*TERNAIRE = block a afficher au click sur un livre si l'i existe et possède des données*/}
 
                 {this.state.livreID ? (
@@ -158,13 +161,21 @@ class LivresListe extends Component{
                             />
                         </div>
 
+                        <div className="mt-3 box">
+                            <TestComponent nom="Bob" email="test@test.fr"/>
+                            <TestComponent nom="Marie" email="marie@gmail.fr"/>
+                        </div>
+
 
                         <div className="mt-3 columns is-multiline">
 
                             {/*Filtre tableau de livre => filtrer par nomLivre qui est inclus dans les lettres de la barre de rechercher  + Boucle dur le tableau de livres + affichage des element 1 à 1*/}
 
+
+
+
                             {this.state.livres.filter(recherche => recherche.nomLivre.toLowerCase().includes(this.state.rechercher.toLowerCase())).map(livre =>
-                                <div onClick={() => this.livreById(livre.id)} id="card-content" className="column" key={livre.id}>
+                                <div onClick={() => this.livreById(livre.id)} id="card-content" className="column is-2" key={livre.id}>
                                     <div className="card">
                                         <div className="p-3 title is-4 has-text-centered has-text-danger">{livre.nomLivre}</div>
                                         <div className="card-image p-3">
